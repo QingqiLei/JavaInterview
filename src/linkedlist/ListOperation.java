@@ -1,24 +1,23 @@
 package linkedlist;
 
-import linkedlist.list.Node;
+import linkedlist.list.ListNode;
 
 import java.util.HashMap;
-import java.util.Hashtable;
 import java.util.Map;
 
 public class ListOperation {
 
     // 从链表中删除重复数据
-    public static void deleteduplicate(Node head){
+    public static void deleteduplicate(ListNode head){
         Map<Integer, Integer> map = new HashMap<>();
-        Node tmp = head;
-        Node pre = null;
+        ListNode tmp = head;
+        ListNode pre = null;
         while(tmp != null){
-            if(map.containsKey(tmp.data)){
+            if(map.containsKey(tmp.val)){
                 pre.next = tmp.next;
             }
             else{
-                map.put(tmp.data, 1);
+                map.put(tmp.val, 1);
                 pre = tmp;
             }
             tmp = tmp.next;
@@ -27,11 +26,11 @@ public class ListOperation {
     }
 
     // 找出单链表中的倒数第K 个元素
-    public static Node findElem(Node head, int k){
+    public static ListNode findElem(ListNode head, int k){
         if(k < 1)
             return null;
-        Node fast = head;
-        Node slow = head;
+        ListNode fast = head;
+        ListNode slow = head;
         for(int i = 0; i < k-1 && fast != null; i++)
             fast = fast.next;
         if(fast == null) return null;
@@ -44,11 +43,11 @@ public class ListOperation {
     }
 
     // 反转链表
-    public static Node reverse(Node head){
-        Node newHead = null;
-        Node cur = head;
+    public static ListNode reverse(ListNode head){
+        ListNode newHead = null;
+        ListNode cur = head;
         while(cur != null){
-            Node next = cur.next;
+            ListNode next = cur.next;
             cur.next = newHead;
             newHead = cur;
             cur = next;
@@ -56,27 +55,27 @@ public class ListOperation {
         return newHead;
     }
 
-    public static Node reverseRecursive(Node head){
+    public static ListNode reverseRecursive(ListNode head){
         if(head == null || head.next == null) return head;
-        Node next = head.next;
-        Node newHead = reverseRecursive(next);
+        ListNode next = head.next;
+        ListNode newHead = reverseRecursive(next);
         next.next = head;
         head.next = null;
         return newHead;
     }
 
     // 从后往前输出单链表
-    public static void printList(Node head){
+    public static void printList(ListNode head){
         if(head != null){
             printList(head.next);
-            System.out.println(head.data);
+            System.out.println(head.val);
         }
     }
 
     // 寻找中间结点
-    public static Node searchMid(Node head){
-        Node fast = head;
-        Node slow = head;
+    public static ListNode searchMid(ListNode head){
+        ListNode fast = head;
+        ListNode slow = head;
         while(fast != null && fast.next != null){
             fast = fast.next.next;
             slow = slow.next;
@@ -85,9 +84,9 @@ public class ListOperation {
     }
 
     // 检测是否有还
-    public boolean isLoop(Node head){
-        Node fast = head;
-        Node slow = head;
+    public boolean isLoop(ListNode head){
+        ListNode fast = head;
+        ListNode slow = head;
         if(fast == null){
             return false;
         }
@@ -101,8 +100,8 @@ public class ListOperation {
     }
 
     // 入口
-    public Node findLoopPort(Node head){
-        Node slow = head, fast = head;
+    public ListNode findLoopPort(ListNode head){
+        ListNode slow = head, fast = head;
         while(fast != null && fast.next != null){
             slow = slow.next;
             fast = fast.next.next;
@@ -120,9 +119,9 @@ public class ListOperation {
     }
 
     // 删除指定节点
-    public boolean deleteNode(Node n){
+    public boolean deleteNode(ListNode n){
         if(n == null || n.next == null) return false;
-        n.data = n.next.data;
+        n.val = n.next.val;
         n.next = n.next.next;
         return true;
     }

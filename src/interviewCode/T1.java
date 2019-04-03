@@ -85,6 +85,8 @@ public class T1 {
     }
 
     public static int[] solve4(int[][] a) {
+
+        // 默认从小到大
         PriorityQueue<int[]> pq = new PriorityQueue<>(Comparator.comparingInt(o -> a[o[0]][o[1]]));
         int max = Integer.MIN_VALUE, start = 0, end = Integer.MAX_VALUE;
         for (int i = 0; i < a.length; i++) {
